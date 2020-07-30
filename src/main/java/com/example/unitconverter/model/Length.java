@@ -11,6 +11,8 @@ public class Length {
     private Double centimeter;
     private Double millimeter;
 
+    public Length(){};
+
     public Double getMile() {
         return this.mile;
     }

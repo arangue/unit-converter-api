@@ -7,7 +7,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
-
 @RestController
 public class LengthController {
 
@@ -39,6 +38,7 @@ public class LengthController {
             case "meter"     : return convertCentimeter(amount);
             case "foot"      : return convertFoot(amount);
             case "inch"      : return convertInch(amount);
+            case "centimeter": return convertCentimeter(amount);
             case "millimeter": return convertMillimeter(amount);
             default:return ResponseEntity.status(HttpStatus.NOT_FOUND).body("There was a problem getting the resource."); 
         }
@@ -47,6 +47,7 @@ public class LengthController {
 
     private ResponseEntity<?> convertMillimeter(Double amount) {
         Length l = new Length();
+        
         l.setMillimeter(amount);
         l.setMile(amount/1609340);
         l.setKilometer(amount/1000000);
@@ -97,6 +98,7 @@ public class LengthController {
         l.setYard(amount/91.44);
         l.setMeter(amount/100);
         l.setFoot(amount/30.48);
+        l.setInch(amount/2.54);
         l.setMillimeter(amount/10);
 
         return new ResponseEntity<>(l, HttpStatus.OK);
